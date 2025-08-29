@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Learning Playground</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 JavaScript Learning Playground</h1>
+            <p>Edit the JavaScript files and see changes live!</p>
+        </header>
+        
+        <main>
+            <section class="concept-section">
+                <h2>Variables & Data Types</h2>
+                <div id="variables-output" class="output-box"></div>
+                <button onclick="runVariablesExample()">Run Variables Example</button>
+            </section>
+
+            <section class="concept-section">
+                <h2>Functions</h2>
+                <div id="functions-output" class="output-box"></div>
+                <button onclick="runFunctionsExample()">Run Functions Example</button>
+            </section>
+
+            <section class="concept-section">
+                <h2>Arrays & Objects</h2>
+                <div id="arrays-output" class="output-box"></div>
+                <button onclick="runArraysExample()">Run Arrays Example</button>
+            </section>
+
+            <section class="concept-section">
+                <h2>Async & Promises</h2>
+                <div id="async-output" class="output-box"></div>
+                <button onclick="runAsyncExample()">Run Async Example</button>
+            </section>
+
+            <section class="concept-section">
+                <h2>DOM Manipulation</h2>
+                <div id="dom-output" class="output-box"></div>
+                <button onclick="runDOMExample()">Run DOM Example</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>💡 Tip: Open the browser console (F12) to see detailed output!</p>
+        </footer>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
