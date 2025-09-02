@@ -209,3 +209,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 **Happy Coding! 🎉**
 
 Start exploring JavaScript concepts by running `npm run dev` and clicking the buttons in each section!
+
