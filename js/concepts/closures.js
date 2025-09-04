@@ -54,6 +54,8 @@ function createCounter() {
     };
 }
 
+
+
 const counter = createCounter();
 console.log('2. Data Privacy / Encapsulation:');
 console.log('counter.getCount():', counter.getCount()); // 0
@@ -66,7 +68,10 @@ console.log();
 // ============================================================================
 // 3. FUNCTION FACTORIES
 // ============================================================================
-
+// real world example
+// API Request Factory, Logger Factory, etc.
+// Benefit of encapsulation is that we can have private variables 
+// can combine multiple factories
 function createMultiplier(multiplier) {
     return function(number) {
         return number * multiplier;
@@ -100,6 +105,27 @@ const button2Handler = createButtonHandler('Cancel');
 console.log('4. Event Handlers:');
 button1Handler(); // Button Submit was clicked!
 button2Handler(); // Button Cancel was clicked!
+console.log();
+
+// ============================================================================
+// 9. ASYNC OPERATIONS WITH CLOSURES
+// ============================================================================
+
+function createAsyncOperation(delay) {
+    return function(callback) {
+        setTimeout(() => {
+            callback(`Operation completed after ${delay}ms`);
+        }, delay);
+    };
+}
+
+const quickOperation = createAsyncOperation(100);
+const slowOperation = createAsyncOperation(1000);
+
+console.log('9. Async Operations:');
+quickOperation((result) => console.log('Quick:', result));
+slowOperation((result) => console.log('Slow:', result));
+console.log('Operations started...');
 console.log();
 
 // ============================================================================
@@ -215,26 +241,7 @@ console.log('sayHello("John", "!"):', sayHello('John', '!')); // Hello John!
 console.log('sayGoodbye("Jane", "."):', sayGoodbye('Jane', '.')); // Goodbye Jane.
 console.log();
 
-// ============================================================================
-// 9. ASYNC OPERATIONS WITH CLOSURES
-// ============================================================================
 
-function createAsyncOperation(delay) {
-    return function(callback) {
-        setTimeout(() => {
-            callback(`Operation completed after ${delay}ms`);
-        }, delay);
-    };
-}
-
-const quickOperation = createAsyncOperation(100);
-const slowOperation = createAsyncOperation(1000);
-
-console.log('9. Async Operations:');
-quickOperation((result) => console.log('Quick:', result));
-slowOperation((result) => console.log('Slow:', result));
-console.log('Operations started...');
-console.log();
 
 // ============================================================================
 // 10. ITERATOR PATTERN

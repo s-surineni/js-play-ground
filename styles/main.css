@@ -142,3 +142,96 @@ footer {
     100% { background-color: #f8f9fa; }
 }
 
+/* Logger styles */
+.log-container {
+    margin-top: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    background: #f8f9fa;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.log-container h4 {
+    background: #667eea;
+    color: white;
+    margin: 0;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 8px 8px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.log-entry {
+    padding: 8px 15px;
+    border-bottom: 1px solid #e9ecef;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-entry.log-info {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
+.log-entry.log-warn {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+}
+
+.log-entry.log-error {
+    background: #ffebee;
+    border-left: 4px solid #f44336;
+}
+
+.log-entry.log-debug {
+    background: #f3e5f5;
+    border-left: 4px solid #9c27b0;
+}
+
+/* Logger controls */
+.logger-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.logger-controls button {
+    background: #6c757d;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.logger-controls button:hover {
+    background: #5a6268;
+    transform: none;
+    box-shadow: none;
+}
+
+.logger-controls button.clear-logs {
+    background: #dc3545;
+}
+
+.logger-controls button.clear-logs:hover {
+    background: #c82333;
+}
+
+.logger-controls button.export-logs {
+    background: #28a745;
+}
+
+.logger-controls button.export-logs:hover {
+    background: #218838;
+}
