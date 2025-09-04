@@ -7,6 +7,110 @@
 
 import { logger } from '../utils/logger.js';
 
+// Make API functions available globally immediately
+window.fetchUserData = async function() {
+  try {
+    logger.info("Fetching user data from JSONPlaceholder API", "promises");
+    const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const userData = await response.json();
+    logger.info("User data fetched successfully", "promises", {
+      userId: userData.id,
+      name: userData.name,
+    });
+    console.log("User Data:", userData.name, "-", userData.email);
+    return userData;
+  } catch (error) {
+    logger.error("Failed to fetch user data", "promises", {
+      error: error.message,
+    });
+    console.error("Error fetching user data:", error.message);
+    throw error;
+  }
+};
+
+window.fetchMultipleData = async function() {
+  try {
+    logger.info("Fetching multiple data sources in parallel", "promises");
+
+    const [userData, catFact, quote] = await Promise.all([
+      fetch("https://jsonplaceholder.typicode.com/posts/1").then((res) =>
+        res.json()
+      ),
+      fetch("https://catfact.ninja/fact").then((res) => res.json()),
+      fetch("https://api.quotable.io/random").then((res) => res.json()),
+    ]);
+
+    logger.info("All parallel API calls completed successfully", "promises", {
+      userPost: userData.title,
+      catFactLength: catFact.fact.length,
+      quoteAuthor: quote.author,
+    });
+
+    console.log("Post Title:", userData.title);
+    console.log("Cat Fact:", catFact.fact);
+    console.log("Quote:", `"${quote.content}" - ${quote.author}`);
+
+    return { userData, catFact, quote };
+  } catch (error) {
+    logger.error("One or more parallel API calls failed", "promises", {
+      error: error.message,
+    });
+    console.error("Error in parallel API calls:", error.message);
+    throw error;
+  }
+};
+
+window.chainAPICalls = async function() {
+  try {
+    logger.info("Starting chained API calls", "promises");
+
+    // First API call
+    const userResponse = await fetch(
+      "https://jsonplaceholder.typicode.com/users/1"
+    );
+    const user = await userResponse.json();
+    console.log("Step 1 - User fetched:", user.name);
+
+    // Second API call using data from first
+    const postsResponse = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`
+    );
+    const posts = await postsResponse.json();
+    console.log("Step 2 - User posts fetched:", posts.length, "posts");
+
+    // Third API call using data from second
+    const firstPost = posts[0];
+    const commentsResponse = await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${firstPost.id}/comments`
+    );
+    const comments = await commentsResponse.json();
+    console.log(
+      "Step 3 - Post comments fetched:",
+      comments.length,
+      "comments"
+    );
+
+    logger.info("All chained API calls completed successfully", "promises", {
+      userName: user.name,
+      postCount: posts.length,
+      commentCount: comments.length,
+    });
+
+    return { user, posts, comments };
+  } catch (error) {
+    logger.error("Chained API calls failed", "promises", {
+      error: error.message,
+    });
+    console.error("Error in chained API calls:", error.message);
+    throw error;
+  }
+};
+
 export function promisesExample() {
   logger.info("Starting JavaScript Promises - Complete Guide", "promises");
   console.log("=== JavaScript Promises - Complete Guide ===\n");
@@ -731,11 +835,11 @@ export function promisesExample() {
     }
   }
 
-  // Start running the API examples
-  runAPIExamples();
+     // Start running the API examples
+   runAPIExamples();
 
-  logger.info("Promises examples completed successfully", "promises");
-  console.log("\n=== End of Promises Examples ===");
+   logger.info("Promises examples completed successfully", "promises");
+   console.log("\n=== End of Promises Examples ===");
 
-  return "Promises examples completed! Check the console and HTML logs for detailed output.";
+   return "Promises examples completed! Check the console and HTML logs for detailed output.";
 }

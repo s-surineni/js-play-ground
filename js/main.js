@@ -84,6 +84,80 @@ window.runPromisesExample = () => {
   logger.info("Promises Example completed", "promises", { result });
 };
 
+window.runFetchUserData = async () => {
+  logger.info("Starting Fetch User Data", "promises");
+  console.log("Running Fetch User Data...");
+  try {
+    if (typeof window.fetchUserData !== "function") {
+      throw new Error(
+        "fetchUserData function not available. Please run the Promises Example first."
+      );
+    }
+    const result = await window.fetchUserData();
+    updateOutput(
+      "promises-output",
+      `User Data: ${result.name} - ${result.email}`
+    );
+    logger.info("Fetch User Data completed", "promises", { result });
+  } catch (error) {
+    logger.error("Fetch User Data failed", "promises", {
+      error: error.message,
+    });
+    updateOutput("promises-output", `Error: ${error.message}`);
+  }
+};
+
+window.runFetchMultipleData = async () => {
+  logger.info("Starting Fetch Multiple Data", "promises");
+  console.log("Running Fetch Multiple Data...");
+  try {
+    if (typeof window.fetchMultipleData !== "function") {
+      throw new Error(
+        "fetchMultipleData function not available. Please run the Promises Example first."
+      );
+    }
+    const result = await window.fetchMultipleData();
+    updateOutput(
+      "promises-output",
+      `Multiple Data: Post - ${
+        result.userData.title
+      }, Cat Fact - ${result.catFact.fact.substring(
+        0,
+        50
+      )}..., Quote - ${result.quote.content.substring(0, 50)}...`
+    );
+    logger.info("Fetch Multiple Data completed", "promises", { result });
+  } catch (error) {
+    logger.error("Fetch Multiple Data failed", "promises", {
+      error: error.message,
+    });
+    updateOutput("promises-output", `Error: ${error.message}`);
+  }
+};
+
+window.runChainAPICalls = async () => {
+  logger.info("Starting Chain API Calls", "promises");
+  console.log("Running Chain API Calls...");
+  try {
+    if (typeof window.chainAPICalls !== "function") {
+      throw new Error(
+        "chainAPICalls function not available. Please run the Promises Example first."
+      );
+    }
+    const result = await window.chainAPICalls();
+    updateOutput(
+      "promises-output",
+      `Chained API: User - ${result.user.name}, Posts - ${result.posts.length}, Comments - ${result.comments.length}`
+    );
+    logger.info("Chain API Calls completed", "promises", { result });
+  } catch (error) {
+    logger.error("Chain API Calls failed", "promises", {
+      error: error.message,
+    });
+    updateOutput("promises-output", `Error: ${error.message}`);
+  }
+};
+
 
 // Logger control functions
 window.clearAllLogs = () => {
