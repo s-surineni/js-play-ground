@@ -84,6 +84,7 @@ window.runPromisesExample = () => {
   logger.info("Promises Example completed", "promises", { result });
 };
 
+
 // Logger control functions
 window.clearAllLogs = () => {
   logger.clear();
