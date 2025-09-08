@@ -8,30 +8,56 @@
 import { logger } from '../utils/logger.js';
 
 // Make API functions available globally immediately
-window.fetchUserData = async function() {
-  try {
-    logger.info("Fetching user data from JSONPlaceholder API", "promises");
-    const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+window.fetchUserData = function () {
+  logger.info("Fetching user data from JSONPlaceholder API", "promises");
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const userData = await response.json();
-    logger.info("User data fetched successfully", "promises", {
-      userId: userData.id,
-      name: userData.name,
+  return fetch("https://jsonplaceholder.typicode.com/users/1")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((userData) => {
+      logger.info("User data fetched successfully", "promises", {
+        userId: userData.id,
+        name: userData.name,
+      });
+      console.log("User Data:", userData.name, "-", userData.email);
+      return userData;
+    })
+    .catch((error) => {
+      logger.error("Failed to fetch user data", "promises", {
+        error: error.message,
+      });
+      console.error("Error fetching user data:", error.message);
+      throw error;
     });
-    console.log("User Data:", userData.name, "-", userData.email);
-    return userData;
-  } catch (error) {
-    logger.error("Failed to fetch user data", "promises", {
-      error: error.message,
-    });
-    console.error("Error fetching user data:", error.message);
-    throw error;
-  }
 };
+
+// window.fetchUserData = async function() {
+//   try {
+//     logger.info("Fetching user data from JSONPlaceholder API", "promises");
+//     const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+
+//     const userData = await response.json();
+//     logger.info("User data fetched successfully", "promises", {
+//       userId: userData.id,
+//       name: userData.name,
+//     });
+//     console.log("User Data:", userData.name, "-", userData.email);
+//     return userData;
+//   } catch (error) {
+//     logger.error("Failed to fetch user data", "promises", {
+//       error: error.message,
+//     });
+//     console.error("Error fetching user data:", error.message);
+//     throw error;
+//   }
+// };
 
 window.fetchMultipleData = async function() {
   try {
