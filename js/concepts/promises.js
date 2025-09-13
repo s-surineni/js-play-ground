@@ -35,6 +35,36 @@ window.fetchUserData = function () {
     });
 };
 
+window.promiseReturningValue = function() {
+  new Promise((resolve) => {
+    resolve("Hello from promise");
+  }).then(result => {
+    logger.info("result from then", "promises", { result });
+  })
+}
+
+// here we are returning a promise from a promise instead of a value
+window.promiseReturningPromise = function() {
+  new Promise((resolve) => {
+    resolve(new Promise((resolve) => resolve("Hello from inner promise")));
+      // this is the inner promise
+  }).then(result => {
+    logger.info("result from then", "promises", { result });
+  })
+};
+
+window.promiseThenReturnsPromise = function() {
+  new Promise(resolve => {
+    resolve("Hello from promise");
+  }).then(result => {
+    return new Promise(resolve => {
+      resolve("Hello from promise inside this");
+    });
+  }).then(result => {
+    console.log("result from then", result);
+    logger.info("result from then", "promises", { result });
+  })
+}
 // window.fetchUserData = async function() {
 //   try {
 //     logger.info("Fetching user data from JSONPlaceholder API", "promises");
@@ -58,6 +88,28 @@ window.fetchUserData = function () {
 //     throw error;
 //   }
 // };
+
+
+// chaining promises
+// todo: how does inner promise return value get passed to the outer promise?
+// fetchUserData()
+//   .then(user => {
+//     return fetchUserPosts(user.id); // Returns a new promise
+//   })
+//   .then(posts => {
+//     console.log(posts); // logs ['post 1 for 123', 'post 2 for 123']
+//   });
+
+// const fetchUserData = () => Promise.resolve({ id: 123 });
+// const fetchUserPosts = (userId) => Promise.resolve([`post 1 for ${userId}`, `post 2 for ${userId}`]);
+
+// fetchUserData()
+//   .then(user => {
+//     return fetchUserPosts(user.id); // Returns a new promise
+//   })
+//   .then(posts => {
+//     console.log(posts); // logs ['post 1 for 123', 'post 2 for 123']
+//   });
 
 window.fetchMultipleData = async function() {
   try {
