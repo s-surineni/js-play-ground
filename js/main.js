@@ -7,6 +7,7 @@ import { domExample } from './concepts/dom.js';
 import { closuresExample } from "./concepts/closures.js";
 import { promisesExample } from "./concepts/promises.js";
 import { modernModulePatternExample } from "./concepts/modern-module-pattern.js";
+import { moduleWithoutWeakMapExample } from "./concepts/module-without-weakmap.js";
 import { logger } from "./utils/logger.js";
 
 // Utility function to update output with animation
@@ -91,6 +92,14 @@ window.runModernModulePatternExample = () => {
   const result = modernModulePatternExample();
   updateOutput("modern-module-pattern-output", result);
   logger.info("Modern Module Pattern Example completed", "modern-module-pattern", { result });
+};
+
+window.runModuleWithoutWeakMapExample = () => {
+  logger.info("Starting Module Without WeakMap Example", "module-without-weakmap");
+  console.log("Running Module Without WeakMap Example...");
+  const result = moduleWithoutWeakMapExample();
+  updateOutput("module-without-weakmap-output", result);
+  logger.info("Module Without WeakMap Example completed", "module-without-weakmap", { result });
 };
 
 window.runFetchUserData = async () => {
