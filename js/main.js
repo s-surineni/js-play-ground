@@ -6,6 +6,7 @@ import { asyncExample } from './concepts/async.js';
 import { domExample } from './concepts/dom.js';
 import { closuresExample } from "./concepts/closures.js";
 import { promisesExample } from "./concepts/promises.js";
+import { modernModulePatternExample } from "./concepts/modern-module-pattern.js";
 import { logger } from "./utils/logger.js";
 
 // Utility function to update output with animation
@@ -82,6 +83,14 @@ window.runPromisesExample = () => {
   const result = promisesExample();
   updateOutput("promises-output", result);
   logger.info("Promises Example completed", "promises", { result });
+};
+
+window.runModernModulePatternExample = () => {
+  logger.info("Starting Modern Module Pattern Example", "modern-module-pattern");
+  console.log("Running Modern Module Pattern Example...");
+  const result = modernModulePatternExample();
+  updateOutput("modern-module-pattern-output", result);
+  logger.info("Modern Module Pattern Example completed", "modern-module-pattern", { result });
 };
 
 window.runFetchUserData = async () => {
