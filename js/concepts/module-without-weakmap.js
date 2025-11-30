@@ -23,7 +23,9 @@ export function moduleWithoutWeakMapExample() {
 
     const RegularMapModule = (function () {
         // PROBLEM: Regular Map holds strong references - prevents garbage collection!
-        const privateData = new Map(); // ❌ Strong reference
+        // IMPORTANT: This Map is created ONCE and shared by ALL instances!
+        // Each instance does NOT get its own copy - they all share the same Map.
+        const privateData = new Map(); // ❌ Strong reference, shared by all instances
         let instanceId = 0;
 
         function RegularMapModule(value) {
@@ -52,15 +54,18 @@ export function moduleWithoutWeakMapExample() {
     })();
 
     console.log('Creating instances with Regular Map:');
-    const mapInstance1 = new RegularMapModule('value1');
-    const mapInstance2 = new RegularMapModule('value2');
-    const mapInstance3 = new RegularMapModule('value3');
+    let mapInstance1 = new RegularMapModule('value1');
+    let mapInstance2 = new RegularMapModule('value2');
+    let mapInstance3 = new RegularMapModule('value3');
 
     console.log('Total instances in Map:', RegularMapModule.getAllInstances()); // 3
+    console.log('⚠️  KEY POINT: All instances share the SAME Map!');
+    console.log('⚠️  Each instance does NOT get its own copy of privateData.');
 
-    // Even if we delete the reference, Map still holds it!
-    delete mapInstance1;
-    console.log('After deleting mapInstance1 reference:');
+    // Even if we remove the reference (set to null), Map still holds it!
+    // In a real scenario, if mapInstance1 went out of scope, Map would still prevent GC
+    mapInstance1 = null;
+    console.log('After setting mapInstance1 to null:');
     console.log('Total instances in Map:', RegularMapModule.getAllInstances()); // Still 3! ❌
 
     // Must manually clean up
@@ -300,8 +305,8 @@ export function moduleWithoutWeakMapExample() {
     console.log('  All users accessible:', allUsers.length);
 
     // Can access password via Symbol
-    const symbols = Object.getOwnPropertySymbols(user1);
-    symbols.forEach(symbol => {
+    const userSymbols = Object.getOwnPropertySymbols(user1);
+    userSymbols.forEach(symbol => {
         console.log(`  User 1 password exposed: "${user1[symbol]}"`); // ❌ SECURITY BREACH!
     });
 
@@ -355,21 +360,22 @@ export function moduleWithoutWeakMapExample() {
     })();
 
     console.log('Creating instances with large data:');
-    const leaky1 = new LeakyModule(1);
-    const leaky2 = new LeakyModule(2);
-    const leaky3 = new LeakyModule(3);
+    let leaky1 = new LeakyModule(1);
+    let leaky2 = new LeakyModule(2);
+    let leaky3 = new LeakyModule(3);
 
     console.log('Total instances:', LeakyModule.getTotalInstances()); // 3
     console.log('Total array items in memory:', LeakyModule.getTotalMemory()); // 30000
 
-    // Delete references
-    console.log('\nDeleting references to instances:');
-    delete leaky1;
-    delete leaky2;
-    delete leaky3;
+    // Remove references (set to null)
+    // In a real scenario, if these variables went out of scope, Map would still prevent GC
+    console.log('\nRemoving references to instances (setting to null):');
+    leaky1 = null;
+    leaky2 = null;
+    leaky3 = null;
 
     // But Map still holds them!
-    console.log('After deleting references:');
+    console.log('After removing references:');
     console.log('Total instances:', LeakyModule.getTotalInstances()); // Still 3! ❌
     console.log('Total array items in memory:', LeakyModule.getTotalMemory()); // Still 30000! ❌
 
