@@ -49,11 +49,13 @@ myModule3.add('item2');
 console.log("myModule3", myModule3.get());
 
 const myModule4 = new simplePrivatePrototype();
+console.log("myModule3", myModule3.get());
 console.log("myModule4", myModule4.get());
 myModule4.add('item1');
 console.log("myModule4", myModule4.get());
 myModule4.add('item2');
 console.log("myModule4", myModule4.get());
+
 
 const simplePrivateClosure = (function() {
     let privateData = new Map();
