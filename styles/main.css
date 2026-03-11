@@ -26,6 +26,24 @@ header {
     color: white;
 }
 
+.breadcrumb {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
 header h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
@@ -37,11 +55,82 @@ header p {
     opacity: 0.9;
 }
 
+/* Concept cards grid */
+.concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.concept-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.concept-card:hover::before {
+    transform: scaleX(1);
+}
+
+.concept-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.concept-card h3 {
+    color: #667eea;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.concept-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.card-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: #667eea;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.concept-card:hover .card-arrow {
+    transform: translateX(5px);
+}
+
 /* Main content */
 main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
     margin-bottom: 40px;
 }
 
@@ -120,6 +209,19 @@ footer {
     
     header h1 {
         font-size: 2rem;
+    }
+    
+    .concepts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .concept-card {
+        padding: 25px;
+    }
+    
+    .concept-card h3 {
+        font-size: 1.2rem;
     }
     
     main {

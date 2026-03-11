@@ -10,70 +10,75 @@
     <div class="container">
         <header>
             <h1>🚀 JavaScript Learning Playground</h1>
-            <p>Edit the JavaScript files and see changes live!</p>
+            <p>Click on any concept to explore it in detail!</p>
         </header>
         
         <main>
-            <section class="concept-section">
-                <h2>Variables & Data Types</h2>
-                <div id="variables-output" class="output-box"></div>
-                <button onclick="runVariablesExample()">Run Variables Example</button>
-            </section>
+            <div class="concepts-grid">
+                <div class="concept-card" onclick="navigateToConcept('variables')">
+                    <div class="card-icon">📊</div>
+                    <h3>Variables & Data Types</h3>
+                    <p>Learn about let, const, var and different data types in JavaScript</p>
+                    <div class="card-arrow">→</div>
+                </div>
 
-            <section class="concept-section">
-                <h2>Functions</h2>
-                <div id="functions-output" class="output-box"></div>
-                <button onclick="runFunctionsExample()">Run Functions Example</button>
-            </section>
+                <div class="concept-card" onclick="navigateToConcept('functions')">
+                    <div class="card-icon">⚡</div>
+                    <h3>Functions</h3>
+                    <p>Explore function declarations, expressions, arrow functions and more</p>
+                    <div class="card-arrow">→</div>
+                </div>
 
-            <section class="concept-section">
-                <h2>Arrays & Objects</h2>
-                <div id="arrays-output" class="output-box"></div>
-                <button onclick="runArraysExample()">Run Arrays Example</button>
-            </section>
+                <div class="concept-card" onclick="navigateToConcept('arrays')">
+                    <div class="card-icon">📚</div>
+                    <h3>Arrays & Objects</h3>
+                    <p>Master array methods and object manipulation techniques</p>
+                    <div class="card-arrow">→</div>
+                </div>
 
-            <section class="concept-section">
-                <h2>Async & Promises</h2>
-                <div id="async-output" class="output-box"></div>
-                <button onclick="runAsyncExample()">Run Async Example</button>
-            </section>
+                <div class="concept-card" onclick="navigateToConcept('async')">
+                    <div class="card-icon">⏱️</div>
+                    <h3>Async & Promises</h3>
+                    <p>Understand asynchronous programming, callbacks, and promises</p>
+                    <div class="card-arrow">→</div>
+                </div>
 
-            <section class="concept-section">
-                <h2>DOM Manipulation</h2>
-                <div id="dom-output" class="output-box"></div>
-                <button onclick="runDOMExample()">Run DOM Example</button>
-            </section>
-            <section class="concept-section">
-                <h2>Closures</h2>
-                <div id="closures-output" class="output-box"></div>
-                <button onclick="runClosuresExample()">Run Closures Example</button>
-            </section>
-            <section class="concept-section">
-                <h2>Promises</h2>
-                <div id="promises-output" class="output-box"></div>
-                <button onclick="runPromisesExample()">Run Promises Example</button>
-                <button onclick="runFetchUserData()">Fetch User Data</button>
-                <button onclick="runFetchMultipleData()">Fetch Multiple Data</button>
-                <button onclick="runChainAPICalls()">Chain API Calls</button>
-                <button onclick="promiseReturningPromise()">Promise Returning Promise</button>
-                <button onclick="promiseThenReturnsPromise()">Promise Then Returns Promise</button>
-                <button onclick="promiseReturningValue()">Promise Returning Value</button>
-            </section>
-            <section class="concept-section">
-                <h2>Modern Module Pattern (WeakMap)</h2>
-                <div id="modern-module-pattern-output" class="output-box"></div>
-                <button onclick="runModernModulePatternExample()">Run Modern Module Pattern Example</button>
-                <button onclick="runModuleWithoutWeakMapExample()">Run WITHOUT WeakMap (See Problems)</button>
-                <div id="module-without-weakmap-output" class="output-box"></div>
-            </section>
+                <div class="concept-card" onclick="navigateToConcept('dom')">
+                    <div class="card-icon">🎨</div>
+                    <h3>DOM Manipulation</h3>
+                    <p>Learn how to interact with and modify web page elements</p>
+                    <div class="card-arrow">→</div>
+                </div>
+
+                <div class="concept-card" onclick="navigateToConcept('closures')">
+                    <div class="card-icon">🔒</div>
+                    <h3>Closures</h3>
+                    <p>Deep dive into closures and lexical scope in JavaScript</p>
+                    <div class="card-arrow">→</div>
+                </div>
+
+                <div class="concept-card" onclick="navigateToConcept('promises')">
+                    <div class="card-icon">🎯</div>
+                    <h3>Promises</h3>
+                    <p>Advanced promise patterns, chaining, and error handling</p>
+                    <div class="card-arrow">→</div>
+                </div>
+
+                <div class="concept-card" onclick="navigateToConcept('modern-module-pattern')">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Modern Module Pattern</h3>
+                    <p>Explore modern JavaScript module patterns with WeakMap</p>
+                    <div class="card-arrow">→</div>
+                </div>
+            </div>
         </main>
 
         <footer>
-            <p>💡 Tip: Open the browser console (F12) to see detailed output!</p>
+            <p>💡 Tip: Click on any concept card to start learning!</p>
         </footer>
     </div>
 
-    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/home.js"></script>
 </body>
 </html>
 

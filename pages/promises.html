@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises - JavaScript Learning Playground</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb">
+                <a href="../index.html">← Back to Home</a>
+            </nav>
+            <h1>🎯 Promises</h1>
+            <p>Advanced promise patterns, chaining, and error handling</p>
+        </header>
+        
+        <main>
+            <section class="concept-section">
+                <h2>Promises Examples</h2>
+                <div id="promises-output" class="output-box"></div>
+                <button onclick="runPromisesExample()">Run Promises Example</button>
+                <button onclick="runFetchUserData()">Fetch User Data</button>
+                <button onclick="runFetchMultipleData()">Fetch Multiple Data</button>
+                <button onclick="runChainAPICalls()">Chain API Calls</button>
+                <button onclick="promiseReturningPromise()">Promise Returning Promise</button>
+                <button onclick="promiseThenReturnsPromise()">Promise Then Returns Promise</button>
+                <button onclick="promiseReturningValue()">Promise Returning Value</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>💡 Tip: Open the browser console (F12) to see detailed output!</p>
+        </footer>
+    </div>
+
+    <script type="module" src="../js/pages/promises.js"></script>
+</body>
+</html>
